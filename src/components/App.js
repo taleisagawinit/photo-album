@@ -1,27 +1,20 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'normalize.css/normalize.css'
 import '../styles/App.css'
 import HomeView from './HomeView'
-import AlbumView from './AlbumView'
 import NavBar from './NavBar'
-import PictureView from './PictureView'
+import Albums from './Albums'
 
-class App extends React.Component {
-
-  render() {
-    return (
-      <Router>
-        <div id="container">
-          <Route exact path="/" component={HomeView} />
-          <Route exact path="/:id" component={AlbumView} />
-          <Route path="/:id/:id" component={PictureView} /> 
-          <NavBar />
-        </div>
-      </Router>
-
-    )
-  }
-}
+const App = (props) => (
+  <Router>
+    <div id="container">
+      <Route exact path="/" component={HomeView} />
+      <Route exact path="/:id" component={Albums} />
+      <NavBar />
+    </div>
+  </Router>
+  
+)
 
 export default App

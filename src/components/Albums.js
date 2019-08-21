@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom'
 
 class HomeView extends React.Component {
   state = {
-    albums: []
+    albumName: '',
+    pictures: []
   }
 
   componentDidMount() {
-    axios.get('/api/albums').then(resp => {
+    axios.get('/api/albums/'+ this.props.match.params.id + '?_embed=pictures').then(resp => {
       this.setState({
-        albums: resp.data 
+        albumName: resp.data.title,
+        pictures: resp.data.pictures
       })
     })
   }
@@ -18,10 +20,10 @@ class HomeView extends React.Component {
     return (
       <div className="main">
         <section className="title">
-          <h2>my music</h2>
+          <h2>{this.state.albumName}</h2>
         </section>
-          {this.state.albums.map(result => (
-            <div className="album" key={result.id}>
+          {this.state.pictures.map(result => (
+            <div className="picture" key={result.id}>
               <Link to={"/"+ result.id}>
                 <img src={result.image} alt="albumpic"></img>
                 <p>{result.title}</p>

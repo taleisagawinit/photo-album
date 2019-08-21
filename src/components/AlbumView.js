@@ -1,47 +1,38 @@
 import React from 'react'
-import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
-import MultiView from './multiview'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import PictureView from './PictureView';
 
 class AlbumView extends React.Component {
   
   state = {
+    albumName: '',
     pictures: []
   }
   componentDidMount() {
-    axios.get("/api/pictures").then(resp => {
+    axios.get("/api/albums/" + this.props.match.params.id + '?_embed=pictures').then(resp => {
       this.setState({
-        pictures: resp.data
+        albumName: resp.data.title,
+        pictures: resp.data.pictures
       })
     })
+     console.log(this.state.albumName)
+ 
   }
-
   render() {
     return (
-        <Router>
-          <div className="main">
-          <section className="title">
-            <h2>{this.state.pictures.albumId}</h2>
-          </section>
-        {this.state.pictures.map(result => (
-            <section className="picture" key={result.id}>
-              <Link to={`/${result.albumId}/${result.id}`}>
-                <MultiView
-                    image={result.image}
-                    title={result.title}
-                />
-              </Link>
-              
-            </section>
-
-          ))}
+      <div className="main">
+        <section className="title">
+          <h2>{this.state.albumName}</h2>
+        </section>
+      {this.state.pictures.map(result => (
+        <div className="picture" key={result.id}>
+          <Link to={'/'+result.id}>
+            <img src={result.image} alt="albumpic"></img>
+            <p>{result.title}</p> 
+          </Link>
         </div>
-        </Router>
-        
-      
-       
-      
+      ))}
+      </div>
     )
   }
 
