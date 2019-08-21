@@ -49,7 +49,7 @@ class HomeView extends React.Component {
           </section>
             {this.state.pictures.map(result => (
               <div className="single" key={result.id}>
-                <Link to={"/"+ result.id}>
+                <Link to={"/photo/"+ result.id}>
                   <img src={result.image} alt="albumpic"></img>
                   <p>{result.title}</p>
                 </Link>

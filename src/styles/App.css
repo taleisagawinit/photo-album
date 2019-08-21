@@ -37,6 +37,20 @@ html {box-sizing:border-box;}
   border: 5px solid rgb(158, 212, 246);
 }
 
+.main .photo {
+  width: 1000px;
+}
+
+.photo .link {
+  display: flex;
+  align-items: center;
+}
+
+.main .photo img {
+  max-width: 600px;
+  max-height: 600px;
+}
+
 
 .main .album, .main .single {
   width: 33%;
@@ -87,6 +101,7 @@ a {
   text-align: right;
   background: rgb(158, 212, 246);
   font-size: 14px;
+  padding: 5px;
 }
 
 .navbar li:hover {

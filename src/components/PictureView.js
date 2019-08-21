@@ -1,43 +1,54 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MaterialIcon from 'material-icons-react'
-import data from './default.json'
+import axios from 'axios'
 
 
 class PictureView extends React.Component {
-  // state = {
-  //     image: '',
-  //     title:''
-  // }
 
-  // getContact = (id) => {
-  //     const pic = data.pictures.find(result => id == result.id)
-  //     this.setState({
-  //         image: pic.image,
-  //         title: pic.title
-  //     })
-  // }
+  state = {
+    picture: {
+      image: '',
+      title: '',
+      id: '',
+      albumId: ''
+    }
+  }
 
-  // componentDidMount() {
-  //     this.getContact(this.props.match.params.id)
-  // }
+  componentDidMount() {
+    axios.get('/api/pictures/'+ this.props.match.params.id).then(resp => {
+      this.setState({
+        picture: {
+          image: resp.data.image,
+          title: resp.data.title,
+          id: resp.data.id,
+          albumId: resp.data.albumId
+        }
+      })
+    })
 
+  }
+
+  
   render() {
     return (
-      <div className="singlePic">
+      <div className="main">
         <section className="title">
-          <h2>picture 1</h2>
+          <p>{this.state.picture.title}</p>
         </section>
-        <Link to={`/`}>
-          <MaterialIcon icon="arrow_back" size='medium' color='#000'/>
-       </Link>
-        <section> 
-          <img src="http://placehold.it/600"/>
-        </section>
-        
-      </div>
+        <div className="photo">
+          <Link className="link" to={"/" + this.state.picture.albumId}>
+            <MaterialIcon icon="arrow_back" size='medium' color='#000'/>
+          </Link>
+          <section>
+            <img src={this.state.picture.image} alt="albumpic"></img> 
+          </section>
+        </div>
+      </div>  
     )
   }
 }
 
 export default PictureView
+
+
