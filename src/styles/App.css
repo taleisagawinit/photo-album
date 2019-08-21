@@ -2,9 +2,8 @@ html {box-sizing:border-box;}
 *, *::before, *::after {box-sizing:inherit; font-family: Arial, Helvetica, sans-serif}
 
 #container {
-  width: 100%;
+  width: 1200px;
   height: 100vh;
-  position: absolute;
   margin: auto;
 }
 
@@ -15,97 +14,84 @@ html {box-sizing:border-box;}
   text-decoration: none;
 } */
 
+.albumView {
+  display:flex;
+}
+
 .main {
-  position: absolute;
-  top:0;
-  right:0;
-  background: darkgray;
-  width: 1200px;
-  margin:auto;
-  height:100vh;
+  width: 1000px;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
 }
 
- .main .title, .singlePic .title {
+ .main .title, .single .title {
   width:100%;
+  font-size: 24px;
   text-transform: uppercase;
-  font-size: 18px;
   height: 130px;
+  margin-top:10px;
+  padding-top:20px;
+  border: 5px solid rgb(158, 212, 246);
 }
 
 
-.main .album, .main .picture {
+.main .album, .main .single {
   width: 33%;
   height: 310px;
-  padding:10px 0;
-  border: 2px solid lightgray;
+  padding-top:20px;
+  /* border: 2px solid lightgray; */
 }
 
-.main .album:hover, .main .picture:hover  {
-  background:rgb(60, 145, 255);
+.main .album:hover, .main .single:hover  {
+  background:rgb(158, 212, 246);
 }
 
-.album p, .singleAlbum p {
+.album p, .single p {
   margin-top:10px;
   padding: 0;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 12px;
+  font-size: 16px;
   width: 100%;
-  text-decoration: none;
+  
 }
 
-.album img, .picture img {
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.album img, .single img {
   width:250px;
 }
 
 
 /* all for nav bar  */
 
-.homeNavBar {
-  width: 240px;
-  height: 100vh;
-  background: lightgray;
+.navbar {
+  width: 150px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-around;
   flex-direction: column;
-  /* opacity: 0;
-  transition: opacity 0.5s; */
-  position: absolute;
-  top:0;
-  left: 0;
-  
 }
 
-.homeNavBar ul {
+.navbar ul {
   list-style: none;
   padding-left: 0;
 }
 
-.homeNavBar li {
-  height: 105px;
+.navbar li {
   border-top: 2px solid white;
   text-transform: uppercase;
-  letter-spacing: 5px;
-  text-align: center;
-  background: lightskyblue;
+  text-align: right;
+  background: rgb(158, 212, 246);
   font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 }
 
-.homeNavBar li:hover {
+.navbar li:hover {
   background: lightgray;
 }
-
-/* .homeNavBar:hover {
-  opacity: 1;
-} */
 
 /* for the single picture view */
 
@@ -116,12 +102,5 @@ html {box-sizing:border-box;}
     background:lightskyblue;
     width: 1200px;
     margin:auto;
-    height:100vh;
     text-align: center;
-}
-
-.singlePic button {
-  position: absolute;
-  left:50px;
-  top:155px;
 }

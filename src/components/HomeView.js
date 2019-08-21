@@ -18,7 +18,7 @@ class HomeView extends React.Component {
     return (
       <div className="main">
         <section className="title">
-          <h2>my music</h2>
+          <p>my music</p>
         </section>
           {this.state.albums.map(result => (
             <div className="album" key={result.id}>
